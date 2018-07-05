@@ -13,7 +13,7 @@ import javax.persistence.ManyToMany;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 @Entity
-public class Categoria implements Serializable{
+public class Categoria implements Serializable {
 	private static final long serialVersionUID = 1L;
 	
 	@Id
@@ -82,7 +82,5 @@ public class Categoria implements Serializable{
 		} else if (!id.equals(other.id))
 			return false;
 		return true;
-	}
-	
-	
+	}	
 }
