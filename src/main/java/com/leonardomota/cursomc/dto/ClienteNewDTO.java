@@ -24,7 +24,6 @@ public class ClienteNewDTO implements Serializable {
 	@NotEmpty(message="Preenchimento obrigatório")
 	private String cpfOuCnpj;
 	
-	@NotEmpty(message="Preenchimento obrigatório")
 	private Integer tipo;
 	
 	@NotEmpty(message="Preenchimento obrigatório")
@@ -33,10 +32,8 @@ public class ClienteNewDTO implements Serializable {
 	@NotEmpty(message="Preenchimento obrigatório")
 	private String numero;
 	
-	@NotEmpty(message="Preenchimento obrigatório")
 	private String complemento;
 	
-	@NotEmpty(message="Preenchimento obrigatório")
 	private String bairro;
 	
 	@NotEmpty(message="Preenchimento obrigatório")
@@ -46,9 +43,9 @@ public class ClienteNewDTO implements Serializable {
 	private String telefone1;
 	
 	private String telefone2;
+	
 	private String telefone3;
 	
-	@NotEmpty(message="Preenchimento obrigatório")
 	private Integer cidadeId;
 	
 	public ClienteNewDTO() {		

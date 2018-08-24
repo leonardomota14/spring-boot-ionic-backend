@@ -8,7 +8,9 @@ import javax.validation.constraints.NotEmpty;
 import org.hibernate.validator.constraints.Length;
 
 import com.leonardomota.cursomc.domain.Cliente;
+import com.leonardomota.cursomc.services.validations.ClienteUpdate;
 
+@ClienteUpdate
 public class ClienteDTO implements Serializable {
 	private static final long serialVersionUID = 1L;
 	
@@ -25,10 +27,10 @@ public class ClienteDTO implements Serializable {
 	public ClienteDTO() {		
 	}
 	
-	public ClienteDTO(Cliente cli) {
-		this.id = cli.getId();
-		this.nome = cli.getNome();
-		this.email = cli.getEmail();
+	public ClienteDTO(Cliente obj) {
+		this.id = obj.getId();
+		this.nome = obj.getNome();
+		this.email = obj.getEmail();
 	}
 
 	public Integer getId() {
