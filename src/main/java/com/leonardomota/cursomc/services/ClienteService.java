@@ -1,10 +1,12 @@
 package com.leonardomota.cursomc.services;
 
+import java.awt.image.BufferedImage;
 import java.net.URI;
 import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -41,7 +43,13 @@ public class ClienteService {
 	BCryptPasswordEncoder passwordEnconder;
 	
 	@Autowired
+	private ImageService imageService;
+	
+	@Autowired
 	private S3Service s3Service;
+	
+	@Value("${img.prefix.client.profile}")
+	private String prefix;
 	
 	public Cliente find(Integer id) {
 		UserSS user = UserService.authenticated();
@@ -117,11 +125,9 @@ public class ClienteService {
 			throw new AuthorizationException("Acesso Negado");
 		}
 		
-		URI uri = s3Service.uploadFile(multipartFile);
-		Cliente cli = find(user.getId());
-		cli.setImageUrl(uri.toString());
-		repo.save(cli);
+		BufferedImage jpgImage = imageService.getJpgImageFromFile(multipartFile);
+		String fileName = prefix + user.getId() + ".jpg";
 		
-		return uri;
+		return s3Service.uploadFile(imageService.getInputStream(jpgImage, "jpg"), fileName, "image");
 	}
 }
